@@ -3,6 +3,7 @@
 #include "calculator.h"
 #include <QMainWindow>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -46,10 +47,10 @@ private:
     QString PerformOperation(Operation op);
     void SetOperation(Operation op);
 
-    Operation current_operation_;
-    QString input_number_;
+    Operation current_operation_ = NO_OPERATION;
+    QString input_number_ = "";
     Calculator calculator_;
-    double active_number_;
-    double memory_cell_;
-    bool memory_saved_;
+    Number active_number_ = .0;
+    Number memory_cell_ = .0;
+    bool memory_saved_ = false;
 };
