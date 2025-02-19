@@ -16,12 +16,20 @@ public:
     Rational(const Rational& other) : numerator_(other.numerator_), denominator_(other.denominator_) {}
 
     
-    int GetNumerator() const { return numerator_; }
-    int GetDenominator() const { return denominator_; }
+    int GetNumerator() const {
+        return numerator_;
+    }
+    int GetDenominator() const {
+        return denominator_;
+    }
 
     // Унарные операции
-    Rational operator+() const { return *this; }
-    Rational operator-() const { return Rational(-numerator_, denominator_); }
+    Rational operator+() const {
+        return *this;
+    }
+    Rational operator-() const {
+        return Rational(-numerator_, denominator_);
+    }
 
     // Присваивающие операции
     Rational& operator+=(const Rational& r) {
@@ -70,6 +78,31 @@ public:
         return (numerator_ * r.denominator_) <=> (r.numerator_ * denominator_);
     }
 
+    // Бинарные арифметические операции
+    Rational operator+(const Rational& r) {
+        Rational result{*this};
+        result += r;
+        return result;
+    }
+
+    Rational operator-(const Rational& r) {
+        Rational result{*this};
+        result -= r;
+        return result;
+    }
+
+    Rational operator*(const Rational& r) {
+        Rational result{*this};
+        result *= r;
+        return result;
+    }
+
+    Rational operator/(const Rational& r) {
+        Rational result{*this};
+        result /= r;
+        return result;
+    }
+
 private:
     int numerator_;
     int denominator_;
@@ -86,30 +119,7 @@ private:
     }
 };
 
-// Бинарные арифметические операции
-inline Rational operator+(const Rational& r1, const Rational& r2) {
-    Rational result{r1};
-    result += r2;
-    return result;
-}
 
-inline Rational operator-(const Rational& r1, const Rational& r2) {
-    Rational result{r1};
-    result -= r2;
-    return result;
-}
-
-inline Rational operator*(const Rational& r1, const Rational& r2) {
-    Rational result{r1};
-    result *= r2;
-    return result;
-}
-
-inline Rational operator/(const Rational& r1, const Rational& r2) {
-    Rational result{r1};
-    result /= r2;
-    return result;
-}
 
 // Ввод и вывод
 inline std::ostream& operator<<(std::ostream& os, const Rational& r) {
